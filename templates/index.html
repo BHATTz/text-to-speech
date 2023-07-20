@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>T-TO-S</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="text-to-speech.png" rel="icon" />
+     <!-- Meta viewport tag for responsiveness -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Text-to-Speech</h1>
+    <input type="text" id="text-to-speech-input" placeholder="Enter text here">
+    <button onclick="speakText()">Speak</button>
+    <h6>© 2023 T-TO-S, Sarthak Bhatt</h6>
+
+    <script>
+        function speakText() {
+            var text = document.getElementById("text-to-speech-input").value;
+            if (text.trim() === "") {
+                alert("Please enter some text before clicking Speak.");
+                return;
+            }
+    
+            // Use the Web Speech API for text-to-speech
+            if ('speechSynthesis' in window) {
+                var synthesis = window.speechSynthesis;
+                var utterance = new SpeechSynthesisUtterance(text);
+                synthesis.speak(utterance);
+            } else {
+                alert("Sorry, your browser doesn't support the Speech Synthesis API.");
+            }
+        }
+    </script>
+    
+</body>
+</html>
